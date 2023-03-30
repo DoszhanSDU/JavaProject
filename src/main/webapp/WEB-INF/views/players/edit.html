@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Player</title>
+</head>
+<body>
+<form th:method="PATCH" th:action="@{/players/{id}(id = ${player.getID()})}" th:object="${player}">
+    <label for="name"></label>
+    <input type="text" th:field="*{name}" id="name" required="true">
+    <br/>
+    <label for="number"></label>
+    <input type="number" th:field="*{number}" id="number" required="true">
+    <br/>
+    <label for="position"></label>
+    <input type="text" th:field="*{position}" id="position" required="true">
+    <br/>
+    <input type="submit" value="Update">
+</form>
+</body>
+</html>
