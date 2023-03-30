@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Team Info</title>
+</head>
+<body>
+  <label for="name">Name:</label>
+  <b th:text="${team.getName()}" id="name">teamName</b><br>
+  <label for="coach">Coach:</label>
+  <b th:text="${team.getCoach()}" id="coach">teamName</b><br>
+  <label for="playerNum">Number of players:</label>
+  <b th:text="${team.getPlayerNum()}" id="playerNum">teamName</b><br>
+  <label for="sponsor">Sponsor:</label>
+  <b th:text="${team.getSponsor()}" id="sponsor">teamName</b><br>
+</body>
+</html>

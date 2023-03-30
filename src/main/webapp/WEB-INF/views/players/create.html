@@ -5,17 +5,17 @@
     <title>Create Player</title>
 </head>
 <body>
-  <form th:method="POST" th:action="@{/players}" th:object="${player}">
-    <label for="name"></label>
-    <input type="text" th:field="*{name}" id="name" required="true">
-    <br/>
-    <label for="number"></label>
-    <input type="number" th:field="*{number}" id="number" required="true">
-    <br/>
-    <label for="position"></label>
-    <input type="text" th:field="*{position}" id="position" required="true">
-    <br/>
-    <input type="submit" value="Create">
-  </form>
+<form th:method="POST" th:action="@{/players}" th:object="${player}">
+  <label for="name">Name</label>
+  <input type="text" th:field="*{name}" id="name" required="required">
+  <br/>
+  <label for="number">Number</label>
+  <input type="number" th:field="*{number}" id="number" required="required">
+  <br/>
+  <label for="position">Position</label>
+  <input type="text" th:field="*{position}" id="position" required="required">
+  <br/>
+  <input type="submit" value="Create">
+</form>
 </body>
 </html>

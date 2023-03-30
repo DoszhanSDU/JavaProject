@@ -7,9 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Controller
 @RequestMapping("/players")
 public class PlayersController {
@@ -20,7 +17,7 @@ public class PlayersController {
     @GetMapping("")
     public String list(Model model){
         model.addAttribute("players" , playersDAO.list());
-        return "players/player";
+        return "/players/players";
     }
 
     @GetMapping("/{id}")

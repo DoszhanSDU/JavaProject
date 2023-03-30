@@ -5,9 +5,14 @@
     <title>Player Info</title>
 </head>
 <body>
-    <p th:text="${player.getName()}">name</p>
-    <p th:text="${player.getNumber()}">number</p>
-    <p th:text="${player.getPosition()}">position</p>
+    <label for="name">Name:</label>
+    <b th:text="${player.getName()}" id="name">name</b> <br>
+    <label for="number">Number:</label>
+    <b th:text="${player.getNumber()}" id="number">number</b> <br>
+    <label for="position">Positon:</label>
+    <b th:text="${player.getPosition()}" id="position">position</b> <br>
+    <a th:href="@{/players/{id}/edit(id= ${player.getID()})}">Edit</a>
+    <p>
     <form th:method="DELETE" th:action="@{/players/{id}(id= ${player.getID()})}">
         <input type="submit" value="DELETE">
     </form>

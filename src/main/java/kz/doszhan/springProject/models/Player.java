@@ -1,7 +1,9 @@
 package kz.doszhan.springProject.models;
 
 public class Player {
+
     private String name;
+    private String team;
     private int number;
     private String position ;
     private int goal;
@@ -13,7 +15,14 @@ public class Player {
         this.goal = 0;
     }
     public Player(){
+    }
 
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     public String getName() {
