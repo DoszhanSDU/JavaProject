@@ -12,9 +12,9 @@ public class TeamsDAO {
     private static int TEAM_ID;
     private List<Team> teamList = new ArrayList<>();
     {
-        teamList.add(new Team("Liverpool","Klopp","Fly Emirates"));
-        teamList.add(new Team("Barcelona","Pep","Oracle"));
-        teamList.add(new Team("Kayrat","Kaka","Pari Match"));
+        addTeam(new Team("Liverpool","Klopp","Fly Emirates"));
+        addTeam(new Team("Barcelona","Pep","Oracle"));
+        addTeam(new Team("Kayrat","Kaka","Pari Match"));
     }
 
     public List<Team> list() {

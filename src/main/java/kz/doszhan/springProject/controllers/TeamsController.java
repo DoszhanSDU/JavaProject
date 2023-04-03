@@ -37,4 +37,22 @@ public class TeamsController {
         teamsDAO.addTeam(team);
         return "redirect:/teams";
     }
+
+    @GetMapping("/{id}/edit")
+    public String edit(Model model , @PathVariable("id") int id){
+        model.addAttribute("team" , teamsDAO.getTeam(id));
+        return "teams/edit";
+    }
+
+    @PatchMapping("/{id}")
+    public String editTeam(@ModelAttribute("team") Team team , @PathVariable("id") int id){
+        teamsDAO.editTeam(team,id);
+        return "redirect:/teams";
+    }
+
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") int id) {
+        teamsDAO.deleteTeam(id);
+        return "redirect:/teams";
+    }
 }

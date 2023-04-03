@@ -14,4 +14,9 @@
   <label for="sponsor">Sponsor:</label>
   <b th:text="${team.getSponsor()}" id="sponsor">teamName</b><br>
 </body>
+<a th:href="@{/teams/{id}/edit(id=${team.getID()})}">Edit</a>
+<br>
+<form th:method="DELETE" th:action="@{/teams/{id}(id=${team.getID()})}">
+    <input type="submit" value="Delete">
+</form>
 </html>
