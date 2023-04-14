@@ -4,17 +4,29 @@ public class Player {
 
     private String name;
     private String team;
+    private int age;
     private int number;
     private String position ;
     private int goal;
     private int ID;
+
     public Player(String name, int number, String position) {
         this.name = name;
         this.number = number;
         this.position = position;
         this.goal = 0;
     }
-    public Player(){
+
+    public Player() {
+
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
     }
 
     public String getTeam() {

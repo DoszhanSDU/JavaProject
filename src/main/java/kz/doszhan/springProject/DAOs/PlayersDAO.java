@@ -10,12 +10,8 @@ import java.util.List;
 public class PlayersDAO {
 
     private static int PLAYER_ID;
-    List<Player> players = new ArrayList<>();
-    {
-        addPlayer(new Player("Doszhan",23,"defender"));
-        addPlayer(new Player("Bekzhan",17,"forward"));
-        addPlayer(new Player("Ula",25,"goalkeeper"));
-    }
+    private static List<Player> players = new ArrayList<>();
+
 
     public List<Player> list() {
         return players;

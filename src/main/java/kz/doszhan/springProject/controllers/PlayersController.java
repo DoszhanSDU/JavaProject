@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/players")
 public class PlayersController {
 
-    @Autowired
-    PlayersDAO playersDAO = new PlayersDAO();
+    final PlayersDAO playersDAO;
+
+    public PlayersController(PlayersDAO playersDAO) {
+        this.playersDAO = playersDAO;
+    }
 
     @GetMapping("")
     public String list(Model model){
