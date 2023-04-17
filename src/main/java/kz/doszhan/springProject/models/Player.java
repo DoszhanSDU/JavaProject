@@ -1,11 +1,21 @@
 package kz.doszhan.springProject.models;
 
-public class Player {
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
+public class Player {
+    @NotEmpty(message = "Name should not be empty" )
+    @Size(min = 2 , max = 30 , message = "Name size should be between 2-30 characters")
     private String name;
     private String team;
+    @Min(value = 0 , message = "Age should be non negative number")
     private int age;
+    @Min(value = 1 , message = "Number should be between 1-99")
+    @Max(value = 99, message = "Number should be between 1-99")
     private int number;
+    @NotEmpty(message = "player should have a position")
     private String position ;
     private int goal;
     private int ID;

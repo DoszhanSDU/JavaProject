@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
 <head>
     <meta charset="UTF-8">
     <title>Create Player</title>
@@ -7,18 +7,33 @@
 <body>
 <form th:method="POST" th:action="@{/players}" th:object="${player}">
   <label for="name">Name</label>
-  <input type="text" th:field="*{name}" id="name" required="required">
+  <input type="text" th:field="*{name}" id="name" >
+  <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
   <br/>
   <label for="age">Age</label>
-  <input type="number" th:field="*{age}" id="age" required="required">
+  <input type="number" th:field="*{age}" id="age" >
+  <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
   <br/>
   <label for="number">Number</label>
-  <input type="number" th:field="*{number}" id="number" required="required">
+  <input type="number" th:field="*{number}" id="number" >
+  <div style="color:red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Number error</div>
   <br/>
-  <label for="position">Position</label>
-  <input type="text" th:field="*{position}" id="position" required="required">
-  <br/>
+  Position<br>
+  <label for="goalkeeper"></label>
+  <input type="radio" th:field="*{position}" name="position" id="goalkeeper" value="goalkeeper" >
+  <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position error</div>
+  Goalkeeper
+  <label for="defender"></label>
+  <input type="radio" th:field="*{position}" name="position" id="defender" value="defender" >
+  <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position error</div>
+  Defender
+  <label for="forward"></label>
+  <input type="radio" th:field="*{position}"  id="forward" name="position" value="forward" >
+  <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position error</div>
+  Forward<br/>
   <input type="submit" value="Create">
 </form>
 </body>
 </html>
+
+

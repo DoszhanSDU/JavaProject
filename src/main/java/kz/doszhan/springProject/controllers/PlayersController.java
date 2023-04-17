@@ -1,10 +1,12 @@
 package kz.doszhan.springProject.controllers;
 
+import javax.validation.Valid;
 import kz.doszhan.springProject.DAOs.PlayersDAO;
 import kz.doszhan.springProject.models.Player;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -30,13 +32,15 @@ public class PlayersController {
     }
 
     @GetMapping("/new")
-    public String createPlayer(Model model) {
-        model.addAttribute("player" , new Player());
+    public String createPlayer(@ModelAttribute("player") Player player) {
         return "players/create";
     }
 
     @PostMapping("")
-    public String addPlayer(@ModelAttribute("player") Player player) {
+    public String addPlayer(@ModelAttribute("player") @Valid Player player , BindingResult bindingResult) {
+        if (bindingResult.hasErrors())
+            return "players/create";
+
         playersDAO.addPlayer(player);
         return "redirect:/players";
     }
@@ -48,7 +52,9 @@ public class PlayersController {
     }
 
     @PatchMapping("/{id}")
-    public String editPlayer(@ModelAttribute("player") Player player , @PathVariable("id") int id){
+    public String editPlayer(@ModelAttribute("player") @Valid Player player , BindingResult bindingResult , @PathVariable("id") int id){
+       if (bindingResult.hasErrors())
+           return "players/edit";
         playersDAO.updatePlayer(id,player);
         return "redirect:/players";
     }

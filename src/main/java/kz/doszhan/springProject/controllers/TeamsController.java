@@ -6,7 +6,10 @@ import kz.doszhan.springProject.models.Team;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/teams")
@@ -30,14 +33,15 @@ public class TeamsController {
     }
 
     @GetMapping("/{id}/addPlayer")
-    public String addPlayer(Model model , @PathVariable("id") int id) {
+    public String addPlayer(Model model , @PathVariable("id") int id , @ModelAttribute("player") Player player) {
         model.addAttribute("team" , teamsDAO.getTeam(id));
-        model.addAttribute("player",new Player());
         return "/teams/addPlayer";
     }
-
     @PostMapping("/{id}")
-    public String newPlayer(@ModelAttribute("player") Player player , @PathVariable("id") int id) {
+    public String newPlayer(@ModelAttribute("player") @Valid  Player player, BindingResult bindingResult
+            , @PathVariable("id") int id) {
+        if (bindingResult.hasErrors())
+            return "/teams/addPlayer";
         if (player != null){
             teamsDAO.getTeam(id).addPlayer(player);
         }else {
@@ -47,8 +51,7 @@ public class TeamsController {
     }
 
     @GetMapping("/new")
-    public String createTeam(Model model) {
-        model.addAttribute("team",new Team());
+    public String createTeam(@ModelAttribute("team") Team team) {
         return "/teams/create";
     }
 
