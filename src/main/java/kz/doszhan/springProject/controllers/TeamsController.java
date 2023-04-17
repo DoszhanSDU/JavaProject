@@ -3,7 +3,6 @@ package kz.doszhan.springProject.controllers;
 import kz.doszhan.springProject.DAOs.TeamsDAO;
 import kz.doszhan.springProject.models.Player;
 import kz.doszhan.springProject.models.Team;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,11 +36,13 @@ public class TeamsController {
         model.addAttribute("team" , teamsDAO.getTeam(id));
         return "/teams/addPlayer";
     }
+
     @PostMapping("/{id}")
     public String newPlayer(@ModelAttribute("player") @Valid  Player player, BindingResult bindingResult
             , @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
-            return "/teams/addPlayer";
+            return "redirect:/teams/{id}/addPlayer";
+
         if (player != null){
             teamsDAO.getTeam(id).addPlayer(player);
         }else {
