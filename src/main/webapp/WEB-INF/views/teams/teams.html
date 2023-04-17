@@ -3,12 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>Teams List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5F5;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+        li {
+            background-color: white;
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            color: #0056b3;
+            text-decoration: underline;
+        }
+        .create-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
-    <div th:each="team : ${teams}">
+<h1>Teams List</h1>
+<ul>
+    <li th:each="team : ${teams}">
         <a th:text="${team.getName()}" th:href="@{/teams/{id}(id=${team.getID()})}">teamName</a>
-    </div>
-    <br>
-    <a th:href="@{/teams/new}">Create</a>
+    </li>
+</ul>
+<a class="create-link" th:href="@{/teams/new}">Create</a>
 </body>
 </html>

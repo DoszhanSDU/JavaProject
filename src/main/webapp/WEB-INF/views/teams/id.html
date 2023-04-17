@@ -3,24 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Team Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        b {
+            font-weight: normal;
+        }
+        a {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-  <label for="name">Name:</label>
-  <b th:text="${team.getName()}" id="name">teamName</b><br>
-  <label for="coach">Coach:</label>
-  <b th:text="${team.getCoach()}" id="coach">teamName</b><br>
-  <label for="playerNum">Number of players:</label>
-  <b th:text="${team.getPlayerNum()}" id="playerNum">teamName</b><br>
-  <label for="sponsor">Sponsor:</label>
-  <b th:text="${team.getSponsor()}" id="sponsor">teamName</b><br>
-</body>
-<a th:href="@{/teams/{id}/edit(id=${team.getID()})}">Edit</a>
-<br>
-<form th:method="DELETE" th:action="@{/teams/{id}(id=${team.getID()})}">
-    <input type="submit" value="Delete">
-</form>
-<p> Team members:</p>
-<div th:each="player : ${team.getPlayers()}">
-    <a th:text="${player.getName()}" >Player</a>
+<div class="container">
+    <label for="name">Name:</label>
+    <b th:text="${team.getName()}" id="name">teamName</b><br>
+    <label for="coach">Coach:</label>
+    <b th:text="${team.getCoach()}" id="coach">teamName</b><br>
+    <label for="playerNum">Number of players:</label>
+    <b th:text="${team.getPlayerNum()}" id="playerNum">teamName</b><br>
+    <label for="sponsor">Sponsor:</label>
+    <b th:text="${team.getSponsor()}" id="sponsor">teamName</b><br>
+    <a th:href="@{/teams/{id}/edit(id=${team.getID()})}" style="background-color: #f44336;">Edit</a>
+    <br>
+    <form th:method="DELETE" th:action="@{/teams/{id}(id=${team.getID()})}">
+        <input type="submit" value="Delete" style="background-color: #4CAF50;">
+    </form>
+    <p> Team members:</p>
+    <div th:each="player : ${team.getPlayers()}">
+        <a th:text="${player.getName()}" style="display: block; margin-bottom: 5px; background-color: #4CAF50; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Player</a>
+    </div>
 </div>
+</body>
 </html>

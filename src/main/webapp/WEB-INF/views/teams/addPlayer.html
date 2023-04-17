@@ -3,36 +3,72 @@
 <head>
   <meta charset="UTF-8">
   <title>Create Player</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    form {
+      width: 50%;
+      margin: 0 auto;
+    }
+    label {
+      display: inline-block;
+      width: 100px;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="radio"] {
+      margin-bottom: 10px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: red;
+      font-style: italic;
+    }
+  </style>
 </head>
 <body>
 <form th:method="POST" th:action="@{/teams/{id}(id=${team.getID()})}" th:object="${player}">
-  <label for="name">Name</label>
+  <label for="name">Name:</label>
   <input type="text" th:field="*{name}" id="name" >
-  <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+  <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
   <br/>
-  <label for="age">Age</label>
+  <label for="age">Age:</label>
   <input type="number" th:field="*{age}" id="age" >
-  <div style="color:red" th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age error</div>
+  <div class="error" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></div>
   <br/>
-  <label for="number">Number</label>
+  <label for="number">Number:</label>
   <input type="number" th:field="*{number}" id="number" >
-  <div style="color:red" th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Number error</div>
+  <div class="error" th:if="${#fields.hasErrors('number')}" th:errors="*{number}"></div>
   <br/>
-  Position<br>
-  <label for="goalkeeper"></label>
+  <div>Position:</div>
   <input type="radio" th:field="*{position}" name="position" id="goalkeeper" value="goalkeeper" >
-  <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position error</div>
-  Goalkeeper
-  <label for="defender"></label>
+  <label for="goalkeeper">Goalkeeper</label>
+  <br/>
   <input type="radio" th:field="*{position}" name="position" id="defender" value="defender" >
-  <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position error</div>
-  Defender
-  <label for="forward"></label>
+  <label for="defender">Defender</label>
+  <br/>
   <input type="radio" th:field="*{position}"  id="forward" name="position" value="forward" >
-  <div style="color:red" th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Position error</div>
-  Forward<br/>
+  <label for="forward">Forward</label>
+  <br/>
+  <div class="error" th:if="${#fields.hasErrors('position')}" th:errors="*{position}"></div>
+  <br/>
   <input type="submit" value="Create">
-
 </form>
 </body>
 </html>

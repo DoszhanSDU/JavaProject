@@ -3,22 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Player Info</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        b {
+            font-weight: normal;
+        }
+        a {
+            display: inline-block;
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        input[type="submit"] {
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
     <label for="name">Name:</label>
     <b th:text="${player.getName()}" id="name">name</b> <br>
     <label for="team">Team:</label>
     <b th:text="${player.getTeam()}" id="team">name</b> <br>
-    <label for="age">Name</label>
-    <b th:text="${player.getAge()}"  id="age"></b> <br/>
+    <label for="age">Age:</label>
+    <b th:text="${player.getAge()}"  id="age"></b> <br>
     <label for="number">Number:</label>
     <b th:text="${player.getNumber()}" id="number">number</b> <br>
-    <label for="position">Positon:</label>
+    <label for="position">Position:</label>
     <b th:text="${player.getPosition()}" id="position">position</b> <br>
     <a th:href="@{/players/{id}/edit(id= ${player.getID()})}">Edit</a>
-    <p>
     <form th:method="DELETE" th:action="@{/players/{id}(id= ${player.getID()})}">
         <input type="submit" value="DELETE">
     </form>
+</div>
 </body>
 </html>
