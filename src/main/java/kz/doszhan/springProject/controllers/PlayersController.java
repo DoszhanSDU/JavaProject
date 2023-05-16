@@ -38,9 +38,6 @@ public class PlayersController {
 
     @PostMapping("")
     public String addPlayer(@ModelAttribute("player") @Valid Player player , BindingResult bindingResult) {
-        if (bindingResult.hasErrors())
-            return "players/create";
-
         playersDAO.addPlayer(player);
         return "redirect:/players";
     }
