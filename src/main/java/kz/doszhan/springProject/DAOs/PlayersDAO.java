@@ -56,28 +56,75 @@ public class PlayersDAO {
     }
 
       public Player getPlayer(int index) {
-        return null;
-     }
+        Player player = null;
+          try {
+              PreparedStatement preparedStatement =
+                      connection.prepareStatement("SELECT * from player where id=?");
+              preparedStatement.setInt(1,index);
+              ResultSet resultSet = preparedStatement.executeQuery();
+              resultSet.next();
+              player = new Player();
+              player.setID(resultSet.getInt("id"));
+              player.setGoal(resultSet.getInt("goal"));
+              player.setPosition(resultSet.getString("position"));
+              player.setName(resultSet.getString("name"));
+              player.setNumber(resultSet.getInt("number"));
+              player.setTeam(resultSet.getString("team"));
+              player.setAge(resultSet.getInt("age"));
+          } catch (SQLException e) {
+              throw new RuntimeException(e);
+          }
+          return player;
+      }
 
     public void addPlayer(Player player) {
         try {
-            Statement statement = connection.createStatement();
-            String SQL = "insert into player values(" + (++PLAYER_ID) + ","
-                    + 0 + ",'" + player.getPosition() + "','"
-                    + player.getName() + "'," + player.getNumber()
-                    + ",'" + player.getTeam() + "'," + player.getAge() + ")";
-            statement.executeUpdate(SQL);
+            PreparedStatement preparedStatement1 = connection.prepareStatement
+                    ("SELECT id FROM player ORDER BY id DESC LIMIT 1;");
+            ResultSet resultSet = preparedStatement1.executeQuery();
+            resultSet.next();
+            PLAYER_ID = resultSet.getInt("id");
+            PreparedStatement preparedStatement = connection.prepareStatement("insert into player values (?,0,?,?,?,?,?)");
+            preparedStatement.setInt(1,++PLAYER_ID);
+            preparedStatement.setString(2,player.getPosition());
+            preparedStatement.setString(3,player.getName());
+            preparedStatement.setInt(4,player.getNumber());
+            preparedStatement.setString(5,player.getTeam());
+            preparedStatement.setInt(6,player.getAge());
+            preparedStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     public void removePlayer(int index) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from player" +
+                    " where id = ?");
+            preparedStatement.setInt(1,index);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void updatePlayer(int id , Player player) {
-
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement
+                    ("update player set " +
+                    "goal=?,position= ?, name = ? " +
+                    ", number = ? , team = ? , age = ? where id = ?" );
+            preparedStatement.setInt(1,player.getGoal());
+            preparedStatement.setString(2,player.getPosition());
+            preparedStatement.setString(3,player.getName());
+            preparedStatement.setInt(4,player.getNumber());
+            preparedStatement.setString(5,player.getTeam());
+            preparedStatement.setInt(6,player.getAge());
+            preparedStatement.setInt(7,id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 
